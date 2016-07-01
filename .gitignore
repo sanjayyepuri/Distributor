@@ -1,2 +1,2 @@
-distributor/node_modules
-worker/node_modules
+node_modules
+*.log
