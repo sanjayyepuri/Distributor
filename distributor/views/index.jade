@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  form(method="post", enctype="multipart/form-data", action="/")
+    input(type="file", name="main")
+    input(type="file", name="inputs", multiple)
+    input(type="submit")

@@ -1,0 +1,10 @@
+{
+  "name": "worker",
+  "description": "task_consumer",
+  "author": "sanjay.yepuri@gmail.com",
+  "version": "1.0.0",
+  "main": "worker.js",
+  "dependencies": {
+    "jackrabbit": "^4.3.0"
+  }
+}
