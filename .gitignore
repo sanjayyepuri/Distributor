@@ -1,2 +1,4 @@
 node_modules
+distributor/public/*
 *.log
+.vscode

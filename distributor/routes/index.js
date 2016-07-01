@@ -2,11 +2,14 @@ var express = require('express');
 var router = express.Router();
 var jackrabbit = require('jackrabbit');
 
+// Connects to RabbitMQ and configures task_queue.
+// Basic work queue.
 var rabbit = jackrabbit ('amqp://localhost');
 var exchange = rabbit.default();
 var tasks = exchange.queue({name: 'task_queue', durable: true});
 
-//set up filestorage
+// Set up the location for the files to be stored and ovveride the write operation
+// to save the original name.
 var multer = require('multer');
 var storage = multer.diskStorage({
   destination:function(req, file, cb){
@@ -26,7 +29,7 @@ router.get('/', function(req, res, next) {
 //File Uploads
 router.post('/', upload.any(), function(req, res, next){
   console.log(req.files);
-  exchange.publish({ data: req.files }, {key: 'task_queue'});
+  exchange.publish({ data: req.files }, {key: 'task_queue'}); // Pushes task to the queue .
   res.status(204).end();
 });
 
